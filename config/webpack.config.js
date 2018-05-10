@@ -13,19 +13,27 @@ const ionicEnv = (nodeEnv == 'production') ? 'prod' : 'dev';
 
 var config = require(path.join(appScriptsDir, 'config', 'webpack.config.js'));
 
-const gerCurEnv = (nodeEnv) => {
+
+const resolvePathToEnvModule = (nodeEnv) => {
   let curEnvPath;
   if(nodeEnv == 'production') {
     curEnvPath = path.join(rootDir, 'src/environments/environment-values', 'environment.prod.js');
   } else {
     curEnvPath = path.join(rootDir, 'src/environments/environment-values', 'environment.dev.js');
   }
+  return curEnvPath;
+}
+
+const gerCurEnv = (nodeEnv) => {
+  let curEnvPath = resolvePathToEnvModule(nodeEnv);
   return require(curEnvPath);
 }
 
+var pathToEnvModule = resolvePathToEnvModule(nodeEnv);
 
-let envVars = gerCurEnv(nodeEnv);
+var envVars = gerCurEnv(nodeEnv);
 envVars.IONIC_ENV = process.env.IONIC_ENV;
+console.log(pathToEnvModule);
 console.log(JSON.stringify(envVars, undefined, 2));
 
 process.env.API_URL = envVars.API_URL;
@@ -67,6 +75,10 @@ config[ionicEnv] = {
   },
 
   plugins: [
+    new webpack.ProvidePlugin({
+      myEnv: pathToEnvModule,
+    }),
+    /*
     ionicWebpackFactory.getIonicEnvironmentPlugin(),
     // Get access to IONIC_ENV, but also get access to NODE_ENV *and* default it to 'development'
     new webpack.DefinePlugin({
@@ -79,6 +91,7 @@ config[ionicEnv] = {
     new webpack.DefinePlugin({
       'process.env': JSON.stringify(process.env)
     })
+    */
   ],
 
 
