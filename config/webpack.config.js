@@ -34,7 +34,7 @@ process.env.GGL_API_KEY =envVars.GGL_API_KEY;
 
 console.log(JSON.stringify(process.env, undefined, 2));
     
-   
+module.exports = (_env) => { 
 
 config[ionicEnv] = {
   entry: process.env.IONIC_APP_ENTRY_POINT,
@@ -100,4 +100,7 @@ console.log(JSON.stringify(config[ionicEnv], undefined, 2));
 
 
 
-module.exports = config;
+
+  console.log('from module.exports : ', _env);
+  return config; 
+};
