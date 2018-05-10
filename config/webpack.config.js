@@ -25,6 +25,7 @@ const gerCurEnv = (nodeEnv) => {
 
 
 let envVars = gerCurEnv(nodeEnv);
+envVars.IONIC_ENV = process.env.IONIC_ENV;
 console.log(JSON.stringify(envVars, undefined, 2));
 
 process.env.API_URL = envVars.API_URL;
@@ -74,6 +75,9 @@ config[ionicEnv] = {
       'myEnv.FB_APP_ID' : JSON.stringify(envVars.FB_APP_ID),
       'myEnv.GGL_CLIENT_ID' : JSON.stringify(envVars.GGL_CLIENT_ID),
       'myEnv.GGL_API_KEY' : JSON.stringify(envVars.GGL_API_KEY) 
+    }),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(process.env)
     })
   ],
 
