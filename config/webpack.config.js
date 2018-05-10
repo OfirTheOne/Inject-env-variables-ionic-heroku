@@ -70,16 +70,21 @@ config[ionicEnv] = {
       {
         test: /\.ts$/,
         loader: process.env.IONIC_WEBPACK_LOADER
-      }
+      },
+      {
+        test: /\.js$/,
+        loader: process.env.IONIC_WEBPACK_TRANSPILE_LOADER
+    }
     ]
   },
 
   plugins: [
+    ionicWebpackFactory.getIonicEnvironmentPlugin(),
+   // ionicWebpackFactory.getCommonChunksPlugin(),
     new webpack.ProvidePlugin({
       myEnv: pathToEnvModule,
     }),
-    /*
-    ionicWebpackFactory.getIonicEnvironmentPlugin(),
+    
     // Get access to IONIC_ENV, but also get access to NODE_ENV *and* default it to 'development'
     new webpack.DefinePlugin({
       'myEnv.IONIC_ENV' : JSON.stringify(envVars.IONIC_ENV),
@@ -88,6 +93,7 @@ config[ionicEnv] = {
       'myEnv.GGL_CLIENT_ID' : JSON.stringify(envVars.GGL_CLIENT_ID),
       'myEnv.GGL_API_KEY' : JSON.stringify(envVars.GGL_API_KEY) 
     }),
+    /*
     new webpack.DefinePlugin({
       'process.env': JSON.stringify(process.env)
     })
