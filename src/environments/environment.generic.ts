@@ -1,5 +1,5 @@
 declare const myEnv: any;
-
+console.log('environment.generic.ts : myEnv = ', myEnv);
 export const variables = {
     IONIC_ENV: myEnv.IONIC_ENV,
     API_URL: myEnv.API_URL,

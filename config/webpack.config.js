@@ -58,7 +58,7 @@ config[ionicEnv] = {
 
   resolve: {
     extensions: ['.ts', '.js', '.json'],
-    modules: [ path.join(__dirname, 'www', 'app'), path.resolve('node_modules')]
+    modules: [path.resolve('node_modules')]
   },
 
   module: {
