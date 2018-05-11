@@ -15,7 +15,6 @@ and whare ever we'll need to use our env object we'll import it from some env mo
 using webpack we will make the the env object to be imported from dev.json on dev mode, and from prod.json on prod mode.<br>
 On the tsconfig.json file in the "compilerOptions" entry we can set an alias names to dir paths on our project, and webpack make it possible for us to change the path that the alias is named from in the build process. <br> 
 What we'll do is in the the webpack config (that will used for the bundling of the project) we will pick the env mode we are on now (dev/prod) and set the alias to a dir path accordingly (dev --> '...env/dev.json' and prod --> '...env/prod.json'). 
- 
 <br><br><br>
 
 ## The solution :
@@ -64,6 +63,10 @@ to the tsconfig.json add the following to the `compilerOptions` entry : <br>
             "@environment": ["environments/environment.prod"]
         }
     }
+    
+here we defining an alias named `@environment` to the path "environments/environment.prod" relative to "./src". <br>
+now the line `import * as env from '@environment'` will improdt what exported from ./src/environments/environment.prod. <br>
+that is the value that we'll change on each environment.<br>
 <br>
 
 #### Handle the webpack configuretion :
