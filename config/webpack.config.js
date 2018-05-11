@@ -81,10 +81,11 @@ config[ionicEnv] = {
   plugins: [
     
     ionicWebpackFactory.getIonicEnvironmentPlugin(),
+    /*
     new webpack.ProvidePlugin({
       myEnv: pathToEnvModule,
     }),
- 
+ */
     // Get access to IONIC_ENV, but also get access to NODE_ENV *and* default it to 'development'
     new webpack.DefinePlugin({
       "myEnv": {

@@ -8,7 +8,7 @@
     "node": "8.9.4"
   },
   "scripts": {
-    "preinstall": "ionic-app-scripts build --prod webpack -p --progress --display-error-details --config ./config/webpack.config.js",
+    "postinstall": "ionic-app-scripts build --prod webpack -p --progress --display-error-details --config ./config/webpack.config.js",
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
     "lint": "ionic-app-scripts lint",
