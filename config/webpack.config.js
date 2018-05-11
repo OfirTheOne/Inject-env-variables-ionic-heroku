@@ -84,14 +84,16 @@ config[ionicEnv] = {
     new webpack.ProvidePlugin({
       myEnv: pathToEnvModule,
     }),
-    
+ 
     // Get access to IONIC_ENV, but also get access to NODE_ENV *and* default it to 'development'
     new webpack.DefinePlugin({
-      'myEnv.IONIC_ENV' : JSON.stringify(envVars.IONIC_ENV),
-      'myEnv.API_URL' : JSON.stringify(envVars.API_URL),
-      'myEnv.FB_APP_ID' : JSON.stringify(envVars.FB_APP_ID),
-      'myEnv.GGL_CLIENT_ID' : JSON.stringify(envVars.GGL_CLIENT_ID),
-      'myEnv.GGL_API_KEY' : JSON.stringify(envVars.GGL_API_KEY) 
+      "myEnv": {
+        IONIC_ENV : JSON.stringify(envVars.IONIC_ENV),
+        API_URL : JSON.stringify(envVars.API_URL),
+        FB_APP_ID : JSON.stringify(22222222),// envVars.FB_APP_ID
+        GGL_CLIENT_ID : JSON.stringify(envVars.GGL_CLIENT_ID),
+        GGL_API_KEY : JSON.stringify(envVars.GGL_API_KEY) 
+      }
     }),
     /*
     new webpack.DefinePlugin({
