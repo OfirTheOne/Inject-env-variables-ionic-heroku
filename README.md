@@ -34,20 +34,20 @@ more on this setup [here](https://github.com/ionic-team/ionic-app-scripts#comman
 
 3. <br>
 add an entry called `config` to your package.json as in the following : <br>
-`
+
     "config" : {
         "ionic_webpack": "./config/webpack.config.js"
     }
-`
 
-<br>
+telling ionic to override the caustom webpack config with our webpack config. <br>
+
 **Handle the webpack configuretion** : <br>
 on the root of your app (same level as node_modules) create a folder name `config`, and in it create a file name `webpack.config.js` .
 
 the code on this file will be using [Ionic Environment Variables](https://github.com/ionic-team/ionic-app-scripts#ionic-environment-variables), and mainlly [webpack](https://webpack.js.org) code.
 
 
-
+<br><br>
 # res: 
 * https://devcenter.heroku.com/articles/nodejs-support
 * https://github.com/ionic-team/ionic-app-scripts
