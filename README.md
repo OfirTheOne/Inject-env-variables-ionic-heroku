@@ -58,6 +58,7 @@ telling ionic to override the caustom webpack config with our webpack config. <b
 to the tsconfig.json add the following to the `compilerOptions` entry : <br>
 
     "compilerOptions":  {
+        ...
         "baseUrl":  "./src",
         "paths": {
             "@environment": ["environments/environment.prod"]
