@@ -10,7 +10,11 @@ we dealing with multiples framework in this process Angular, Ionic, Webpack and 
 <br><br><br>
 
 ## The idea to solve this : 
-
+we got our config data on a dev.json and prod.json (one for each env, can be more than two).
+and whare ever we'll need to use our env object we'll import it from some env module,
+using webpack we will make the the env object to be imported from dev.json on dev mode, and from prod.json on prod mode.   
+on the tsconfig file in "compilerOptions" entry we can set an elias name to dir paths on our project, and webpack make it possibale for us to change the path that the alias is named from in the build process. what we'll do is in the the webpack config (that will used for the bundling of the project) we will pick the env mode we are on now (dev/prod) and set the alias to a dir path accordingly. 
+ 
 <br><br><br>
 
 ## The solution :
