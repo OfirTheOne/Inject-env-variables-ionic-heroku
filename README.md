@@ -24,8 +24,7 @@ using process.env will bring us to do another config setup in webpack config. al
 
 #### Handle the low level configuretion : 
 
-**1.** <br>
-in your package.json make sure that "@ionic/app-scripts", "typescript" in the "dependencies" enrty <br>
+**1.** in your package.json make sure that "@ionic/app-scripts", "typescript" in the "dependencies" enrty <br>
 
     "dependencies" : {
         ... 
@@ -34,8 +33,7 @@ in your package.json make sure that "@ionic/app-scripts", "typescript" in the "d
     } 
 <br>
 
-**2.** <br>
-to the "scripts" entry add the following : <br>
+**2.** to the "scripts" entry add the following : <br>
 
     scripts : {
         ...
@@ -47,8 +45,7 @@ with `--prod` we set the prod flag up during the build on the server, and `webpa
 more on this setup [here](https://github.com/ionic-team/ionic-app-scripts#command-line-flags) & [here](https://docs.npmjs.com/misc/scripts#description).<br>
 <br>
 
-**3.** <br>
-add an entry called `config` to your package.json as in the following : <br>
+**3.** add an entry called `config` to your package.json as in the following : <br>
 
     "config" : {
         "ionic_webpack": "./config/webpack.config.js"
@@ -57,8 +54,7 @@ add an entry called `config` to your package.json as in the following : <br>
 telling ionic to override the caustom webpack config with our webpack config. <br>
 <br>
 
-**4.** <br> 
-to the tsconfig.json add the following to the `compilerOptions` entry : <br>
+**4.** to the tsconfig.json add the following to the `compilerOptions` entry : <br>
 
     "compilerOptions":  {
         ...
