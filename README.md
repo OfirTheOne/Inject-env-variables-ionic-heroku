@@ -30,7 +30,7 @@ to the "scripts" entry add the following : <br>
     }
 
 with `--prod` we set the prod flag up during the build on the server, and `webpack` configure the way that webpack will bundle our app. <br>
-more on this setup [here](https://github.com/ionic-team/ionic-app-scripts#command-line-flags).<br>
+more on this setup [here](https://github.com/ionic-team/ionic-app-scripts#command-line-flags) & [here](https://docs.npmjs.com/misc/scripts#description).<br>
 
 3. <br>
 add an entry called `config` to your package.json as in the following : <br>
