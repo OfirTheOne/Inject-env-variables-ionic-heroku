@@ -1,19 +1,18 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-// import { EnvVariablesToken } from '../../environments/environment.token';
-import * as ENV  from '@environment';
+import { EnvironmentService } from '../../services/environment.service';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController/*, @Inject(EnvVariablesToken) public envVariables */) {
+  constructor(public navCtrl: NavController, private environment: EnvironmentService) {
 
   }
 
   ionViewDidLoad() {
-    console.log(ENV);
+    console.log(this.environment.get("all"));
     // console.log(this.envVariables.API_URL);
 
   }

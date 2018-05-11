@@ -33,5 +33,5 @@ $RECYCLE.BIN/
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
-src/environments/environment-values/environment.dev.js
+src/environments/environment.dev.js
 

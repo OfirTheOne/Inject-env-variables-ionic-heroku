@@ -14,7 +14,7 @@
     "target": "es5",
     "baseUrl":  "./src",
     "paths": {
-      "@environment": ["environments/environment-values/environment.prod"]
+      "@environment": ["environments/environment.prod"]
     }
   },
   "include": [

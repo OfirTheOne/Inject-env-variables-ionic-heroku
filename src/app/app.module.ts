@@ -10,7 +10,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-// import { EnvironmentsModule } from '../environments/environment.module';
+import { EnvironmentService } from '../services/environment.service';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +22,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TabsPage
   ],
   imports: [
-    // EnvironmentsModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
   ],
@@ -36,7 +36,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    EnvironmentService
   ]
 })
 export class AppModule {}
