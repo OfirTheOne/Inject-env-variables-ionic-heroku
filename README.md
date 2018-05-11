@@ -1,4 +1,4 @@
-# The problam we targeting :
+## The problam we targeting :
 Having a web app developed in Ionic framework and [Deploying to heroku with Git](https://devcenter.heroku.com/articles/git).<br>
 I must manage at least two environments, prod(uction) and dev(elopment), and another important requirement is that no sensitive data (e.g API_URL, CLIENT_KEY) will publicly sit in the app's git repo.<br>
 
@@ -8,10 +8,15 @@ so .. <br>
 
 we dealing with multiples framework in this process Angular, Ionic, Webpack and Heroku 
 <br><br><br>
-# The solution :
 
-**Handle the low level configuretion** : <br>
-1. <br>
+## The idea to solve this : 
+
+
+
+## The solution :
+
+#### Handle the low level configuretion : 
+**1.** <br>
 in your package.json make sure that "@ionic/app-scripts", "typescript" in the "dependencies" enrty <br>
 
     "dependencies" : {
@@ -20,7 +25,7 @@ in your package.json make sure that "@ionic/app-scripts", "typescript" in the "d
         "typescript": "~2.6.2" 
     } 
 
-2. <br>
+**2.** <br>
 to the "scripts" entry add the following : <br>
 
     scripts : {
@@ -32,7 +37,7 @@ to the "scripts" entry add the following : <br>
 with `--prod` we set the prod flag up during the build on the server, and `webpack` configure the way that webpack will bundle our app. <br>
 more on this setup [here](https://github.com/ionic-team/ionic-app-scripts#command-line-flags) & [here](https://docs.npmjs.com/misc/scripts#description).<br>
 
-3. <br>
+**3.** <br>
 add an entry called `config` to your package.json as in the following : <br>
 
     "config" : {
@@ -41,7 +46,17 @@ add an entry called `config` to your package.json as in the following : <br>
 
 telling ionic to override the caustom webpack config with our webpack config. <br>
 
-**Handle the webpack configuretion** : <br>
+**4.** <br> 
+to the tsconfig.json add the following to the `compilerOptions` entry : <br>
+
+    "compilerOptions":  {
+        "baseUrl":  "./src",
+        "paths": {
+            "@environment": ["environments/environment.prod"]
+        }
+    }
+    
+#### Handle the webpack configuretion :
 on the root of your app (same level as node_modules) create a folder name `config`, and in it create a file name `webpack.config.js` .
 
 the code on this file will be using [Ionic Environment Variables](https://github.com/ionic-team/ionic-app-scripts#ionic-environment-variables), and mainlly [webpack](https://webpack.js.org) code.
