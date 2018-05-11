@@ -21,9 +21,9 @@ import { EnvironmentsModule } from '../environments/environment.module';
     TabsPage
   ],
   imports: [
+    EnvironmentsModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    EnvironmentsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -79,8 +79,8 @@ config[ionicEnv] = {
   },
 
   plugins: [
+    
     ionicWebpackFactory.getIonicEnvironmentPlugin(),
-   // ionicWebpackFactory.getCommonChunksPlugin(),
     new webpack.ProvidePlugin({
       myEnv: pathToEnvModule,
     }),
