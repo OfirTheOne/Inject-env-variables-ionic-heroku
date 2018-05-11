@@ -11,10 +11,13 @@ we dealing with multiples framework in this process Angular, Ionic, Webpack and 
 
 ## The idea to solve this : 
 We got our config data on a dev.json and a prod.json (one for each env, can be more than two). <br>
-and whare ever we'll need to use our env object we'll import it from some env module, 
-using webpack we will make the the env object to be imported from dev.json on dev mode, and from prod.json on prod mode.<br>
+and wherever we'll need to use our environment object we'll import it from some environment module, 
+using webpack we will make the the environment object to be imported from dev.json on dev mode, and from prod.json on prod mode.<br>
 On the tsconfig.json file in the "compilerOptions" entry we can set an alias names to dir paths on our project, and webpack make it possible for us to change the path that the alias is named from in the build process. <br> 
-What we'll do is in the the webpack config (that will used for the bundling of the project) we will pick the env mode we are on now (dev/prod) and set the alias to a dir path accordingly (dev --> '...env/dev.json' and prod --> '...env/prod.json'). 
+What we'll do is in the the webpack config (that will used for the bundling of the project) we will pick the env mode we are on now (dev/prod) and set the alias to a dir path accordingly (dev --> '...env/dev.json' and prod --> '...env/prod.json'). <br>
+That's solves the behavior differences on each environment, but another thing is to not have the environment data siting publicly on the git repo (and in what we discribed this far, the prod file is do sitting on git).<br> 
+Heroku giving us the option to define [config vars](https://devcenter.heroku.com/articles/config-vars) on your app setting. the values will be saved securely on heroku, and will be added to to process.env for us to use in our app code. <br>
+using process.env will bring us to do another config setup in webpack config. also there is typscript in the way.. <br>
 <br><br><br>
 
 ## The solution :
