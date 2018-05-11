@@ -11,7 +11,11 @@
     "module": "es2015",
     "moduleResolution": "node",
     "sourceMap": true,
-    "target": "es5"
+    "target": "es5",
+    "baseUrl":  "./src",
+    "paths": {
+      "@environment": ["environments/environment-values/environment.prod"]
+    }
   },
   "include": [
     "src/**/*.ts"

@@ -5,8 +5,8 @@ import { variables } from './environment.generic';
 declare const process: any; // Typescript compiler will complain without this
 
 export function environmentFactory() {
-  console.log(process.env.IONIC_ENV);
-  console.log(JSON.stringify(variables, undefined, 2));
+  // console.log(process.env.IONIC_ENV);
+  // console.log(JSON.stringify(variables, undefined, 2));
   return variables;
 }
 

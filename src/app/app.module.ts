@@ -10,7 +10,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { EnvironmentsModule } from '../environments/environment.module';
+// import { EnvironmentsModule } from '../environments/environment.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { EnvironmentsModule } from '../environments/environment.module';
     TabsPage
   ],
   imports: [
-    EnvironmentsModule,
+    // EnvironmentsModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
   ],

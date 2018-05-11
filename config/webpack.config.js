@@ -43,8 +43,8 @@ process.env.GGL_API_KEY =envVars.GGL_API_KEY;
 
 console.log(JSON.stringify(process.env, undefined, 2));
     
+/*
 module.exports = (_env) => { 
-
 config[ionicEnv] = {
   entry: process.env.IONIC_APP_ENTRY_POINT,
   output: {
@@ -81,26 +81,26 @@ config[ionicEnv] = {
   plugins: [
     
     ionicWebpackFactory.getIonicEnvironmentPlugin(),
-    /*
+    
     new webpack.ProvidePlugin({
       myEnv: pathToEnvModule,
     }),
- */
+    
     // Get access to IONIC_ENV, but also get access to NODE_ENV *and* default it to 'development'
     new webpack.DefinePlugin({
-      // "myEnv": {
+      "myEnv": {
         IONIC_ENV : JSON.stringify(envVars.IONIC_ENV),
         API_URL : JSON.stringify(envVars.API_URL),
         FB_APP_ID : JSON.stringify(22222222),// envVars.FB_APP_ID
         GGL_CLIENT_ID : JSON.stringify(envVars.GGL_CLIENT_ID),
         GGL_API_KEY : JSON.stringify(envVars.GGL_API_KEY) 
-      // }
+      }
     }),
-    /*
+    
     new webpack.DefinePlugin({
       'process.env': JSON.stringify(process.env)
     })
-    */
+    
   ],
 
 
@@ -130,3 +130,13 @@ console.log(JSON.stringify(config[ionicEnv], undefined, 2));
   console.log('from module.exports : ', _env);
   return config; 
 };
+*/
+
+module.exports = function () {
+  config[process.env.IONIC_ENV].resolve.alias = {
+      "@environment": pathToEnvModule
+  };
+  config[process.env.IONIC_ENV].resolve.extensions = ['.ts', '.js', '.json'];
+ console.log(config[process.env.IONIC_ENV].resolve); 
+  return config;
+}
