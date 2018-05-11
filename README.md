@@ -6,7 +6,7 @@ so .. <br>
 * first, manage two envaierments, prod and dev, with different behaviors - in this case **inject different envaierment variables values in dev mode and prod mode**. <br>
 * seconde, inject envaierment variable - conataininig **sensitive values** - on the heroku server **without it sitting in the repo**. <br>
 
-we dealing with multiples framework in this process Angular, Ionic, Webpack and Heroku 
+we dealing with multiples framework in this process Angular, Ionic, Webpack and Heroku.
 <br><br><br>
 
 ## The idea to solve this : 
@@ -17,7 +17,7 @@ On the tsconfig.json file in the "compilerOptions" entry we can set an alias nam
 What we'll do is in the the webpack config (that will used for the bundling of the project) we will pick the env mode we are on now (dev/prod) and set the alias to a dir path accordingly (dev --> '...env/dev.json' and prod --> '...env/prod.json'). <br>
 That's solves the behavior differences on each environment, but another thing is to not have the environment data siting publicly on the git repo (and in what we discribed this far, the prod file is do sitting on git).<br> 
 Heroku giving us the option to define [config vars](https://devcenter.heroku.com/articles/config-vars) on your app setting. the values will be saved securely on heroku, and will be added to to process.env for us to use in our app code. <br>
-using process.env will bring us to do another config setup in webpack config. also there is typscript in the way.. <br>
+using process.env will bring us to do another config setup in webpack config. also there is typscript in the way.. 
 <br><br><br>
 
 ## The solution :
