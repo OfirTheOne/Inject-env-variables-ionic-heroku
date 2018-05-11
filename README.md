@@ -11,10 +11,10 @@ we dealing with multiples framework in this process Angular, Ionic, Webpack and 
 
 ## The idea to solve this : 
 
-
+<br><br><br>
 
 ## The solution :
-
+<br>
 #### Handle the low level configuretion : 
 **1.** <br>
 in your package.json make sure that "@ionic/app-scripts", "typescript" in the "dependencies" enrty <br>
@@ -24,6 +24,7 @@ in your package.json make sure that "@ionic/app-scripts", "typescript" in the "d
         "@ionic/app-scripts": "3.1.9", 
         "typescript": "~2.6.2" 
     } 
+<br>
 
 **2.** <br>
 to the "scripts" entry add the following : <br>
@@ -36,6 +37,7 @@ to the "scripts" entry add the following : <br>
 
 with `--prod` we set the prod flag up during the build on the server, and `webpack` configure the way that webpack will bundle our app. <br>
 more on this setup [here](https://github.com/ionic-team/ionic-app-scripts#command-line-flags) & [here](https://docs.npmjs.com/misc/scripts#description).<br>
+<br>
 
 **3.** <br>
 add an entry called `config` to your package.json as in the following : <br>
@@ -45,6 +47,7 @@ add an entry called `config` to your package.json as in the following : <br>
     }
 
 telling ionic to override the caustom webpack config with our webpack config. <br>
+<br>
 
 **4.** <br> 
 to the tsconfig.json add the following to the `compilerOptions` entry : <br>
@@ -55,7 +58,8 @@ to the tsconfig.json add the following to the `compilerOptions` entry : <br>
             "@environment": ["environments/environment.prod"]
         }
     }
-    
+<br>
+
 #### Handle the webpack configuretion :
 on the root of your app (same level as node_modules) create a folder name `config`, and in it create a file name `webpack.config.js` .
 
