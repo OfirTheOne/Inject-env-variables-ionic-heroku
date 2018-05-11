@@ -65,7 +65,7 @@ to the tsconfig.json add the following to the `compilerOptions` entry : <br>
     }
     
 here we defining an alias named `@environment` to the path "environments/environment.prod" relative to "./src". <br>
-now the line `import * as env from '@environment'` will improdt what exported from ./src/environments/environment.prod. <br>
+now the line `import * as env from '@environment'` will improd what exported from ./src/environments/environment.prod. <br>
 that is the value that we'll change on each environment.<br>
 <br>
 
