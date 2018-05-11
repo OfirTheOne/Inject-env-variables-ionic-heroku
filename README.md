@@ -93,3 +93,4 @@ the code on this file will be using [Ionic Environment Variables](https://github
 * https://angular.io/guide/dependency-injection-pattern
 ** https://codecraft.tv/courses/angular/dependency-injection-and-providers/tokens/
 * https://github.com/roblouie/ionic2-environment-variables/blob/master/webpack.config.js
+* https://artyomsokolov.com/how-to-use-different-environment-variables-for-production-and-development-with-ionic-3/
