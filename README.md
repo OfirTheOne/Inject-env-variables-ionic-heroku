@@ -16,7 +16,9 @@ we dealing with multiples framework in this process Angular, Ionic, Webpack and 
 ## The solution :
 <br>
 #### Handle the low level configuretion : 
+
 **1.** <br>
+
 in your package.json make sure that "@ionic/app-scripts", "typescript" in the "dependencies" enrty <br>
 
     "dependencies" : {
