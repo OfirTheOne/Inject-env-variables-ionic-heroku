@@ -133,6 +133,11 @@ console.log(JSON.stringify(config[ionicEnv], undefined, 2));
 */
 
 module.exports = function () {
+  config[process.env.IONIC_ENV].plugins.push(
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(process.env)
+    })
+  );
   config[process.env.IONIC_ENV].resolve.alias = {
       "@environment": pathToEnvModule
   };
