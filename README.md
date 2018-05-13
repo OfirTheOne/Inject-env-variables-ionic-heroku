@@ -165,8 +165,9 @@ Where you need to use the env object inject the service like any other service .
 * https://www.williamghelfi.com/blog/2017/06/22/ionic-environments-webpack/
 * https://blog.grossman.io/writing-es6-ionic-code-with-webpack/
 * http://blog.lssinc.com/2017/04/24/ionic-environment-variables-the-best-way/
-** http://geeklearning.io/our-project-template-to-build-awesome-ionic-apps-using-webpack-and-typescript/
+* http://geeklearning.io/our-project-template-to-build-awesome-ionic-apps-using-webpack-and-typescript/
 * https://angular.io/guide/dependency-injection-pattern
-** https://codecraft.tv/courses/angular/dependency-injection-and-providers/tokens/
+* https://codecraft.tv/courses/angular/dependency-injection-and-providers/tokens/
 * https://github.com/roblouie/ionic2-environment-variables/blob/master/webpack.config.js
 * https://artyomsokolov.com/how-to-use-different-environment-variables-for-production-and-development-with-ionic-3/
+* http://marcoucou.com/webpack-and-ionic/
