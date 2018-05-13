@@ -4,7 +4,7 @@ I must manage at least two environments, prod(uction) and dev(elopment), and ano
 <br>
 * first, manage two envaierments, prod and dev, with different behaviors - in this case *inject different envaierment variables values in dev mode and prod mode*. <br>
 * second, inject envaierment variables - conataininig *sensitive values* - on the heroku server *without it sitting in the repo*. 
-<br>
+
 we dealing with multiple frameworks in this process - Angular-Ionic, Webpack and Heroku.
 <br><br><br>
 
@@ -22,7 +22,7 @@ That's solves the behavior differences on each environment, but another thing is
 <br> 
 Heroku giving us the option to define [config vars](https://devcenter.heroku.com/articles/config-vars) on our app setting page. the values will be saved securely on heroku, and will be added to `process.env` object, for us to use in our app code. 
 <br>
-using `process.env` will bring us to define another config plugin in the webpack config file .
+Using `process.env` will bring us to define another config plugin in the webpack config file .
 <br><br><br>
 
 ## The solution :
@@ -36,7 +36,7 @@ using `process.env` will bring us to define another config plugin in the webpack
         "@ionic/app-scripts": "3.1.9", 
         "typescript": "~2.6.2" 
     } 
-<br>
+<br><br>
 
 **2.** to the "scripts" entry add the following : <br>
 
@@ -48,7 +48,7 @@ using `process.env` will bring us to define another config plugin in the webpack
 
 with `--prod` we set the prod flag up during the build on the server, and `webpack` configure the way that webpack will bundle our app. <br>
 more on this setup [here](https://github.com/ionic-team/ionic-app-scripts#command-line-flags) & [here](https://docs.npmjs.com/misc/scripts#description).<br>
-<br>
+<br><br>
 
 **3.** add an entry called `config` to your package.json as in the following : <br>
 
@@ -57,7 +57,7 @@ more on this setup [here](https://github.com/ionic-team/ionic-app-scripts#comman
     }
 
 telling ionic to override the caustom webpack config with our webpack config. <br>
-<br>
+<br><br>
 
 **4.** to the tsconfig.json add the following to the `compilerOptions` entry : <br>
 
@@ -69,15 +69,15 @@ telling ionic to override the caustom webpack config with our webpack config. <b
         }
     }
     
-here we defining an alias named `@environment` to the path "environments/environment.prod" relative to "./src". <br>
-now the line `import * as env from '@environment'` will improd what exported from ./src/environments/environment.prod. <br>
-that is the value that we'll change on each environment.<br>
-<br>
+Here we defining an alias named `@environment` to the path "environments/environment.prod" relative to "./src". <br>
+now the line `import * as env from '@environment'` will import what exported from ./src/environments/environment.prod. <br>
+(that is the value that we'll change on each environment)<br>
+<br><br><br>
 
 #### Handle the webpack configuretion :
-on the root of your app (same level as node_modules) create a folder name `config`, and in it create a file name `webpack.config.js` .
-
-the code on this file will be using [Ionic Environment Variables](https://github.com/ionic-team/ionic-app-scripts#ionic-environment-variables), and mainlly [webpack](https://webpack.js.org) code.
+On the root of your app (same level as node_modules) create a folder name `config`, and in it create a file name `webpack.config.js` .
+<br>
+The code on this file will be using [Ionic Environment Variables](https://github.com/ionic-team/ionic-app-scripts#ionic-environment-variables), and mainlly [webpack](https://webpack.js.org) code.
     
     const path = require('path');
     const webpack = require('webpack');
@@ -116,10 +116,10 @@ the code on this file will be using [Ionic Environment Variables](https://github
       
       return config;
     }
-
+<br><br><br>
 
 #### Handle the environment service implementation :
-Encapsulating the environment variable in a service is the best practice in this case.
+Encapsulating the environment variable in a service is the best practice in this case. <br>
 Where you need to use the env object inject the service like any other service ..
 
     import * as _env from '@environment';  //  <-- generically import the env object according to the current environment
@@ -132,7 +132,7 @@ Where you need to use the env object inject the service like any other service .
         
         constructor() {
             console.log(`${_env}`);
-            this.env = Object.freeze(_env); // making env object to be imutiable
+            this.env = Object.freeze(_env); // <-- making env object to be immutable
         }
     
         get(keyName : string): string | undefined {
@@ -150,7 +150,8 @@ Where you need to use the env object inject the service like any other service .
         }
     }
 
-<br><br>
+<br><br><br><br>
+
 # res: 
 * https://devcenter.heroku.com/articles/nodejs-support
 * https://github.com/ionic-team/ionic-app-scripts
