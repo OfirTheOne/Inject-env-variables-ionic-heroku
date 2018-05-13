@@ -3,7 +3,7 @@ Having a web app developed in Ionic 3 framework and [Deploying to heroku with Gi
 I must manage at least two environments, prod(uction) and dev(elopment), and another important requirement is that no sensitive data (e.g API_URL, CLIENT_KEY) will publicly sit in the app's git repo.
 <br>
 * first, manage two envaierments, prod and dev, with different behaviors - in this case *inject different envaierment variables values in dev mode and prod mode*. <br>
-* seconde, inject envaierment variable - conataininig *sensitive values* - on the heroku server *without it sitting in the repo*. 
+* second, inject envaierment variables - conataininig *sensitive values* - on the heroku server *without it sitting in the repo*. 
 <br>
 we dealing with multiple frameworks in this process - Angular-Ionic, Webpack and Heroku.
 <br><br><br>
@@ -119,6 +119,8 @@ the code on this file will be using [Ionic Environment Variables](https://github
 
 
 #### Handle the environment service implementation :
+Encapsulating the environment variable in a service is the best practice in this case.
+Where you need to use the env object inject the service like any other service ..
 
     import * as _env from '@environment';  //  <-- generically import the env object according to the current environment
     import { Injectable } from "@angular/core";
