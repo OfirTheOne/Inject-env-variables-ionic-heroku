@@ -1,23 +1,28 @@
-## The problam we targeting :
-Having a web app developed in Ionic framework and [Deploying to heroku with Git](https://devcenter.heroku.com/articles/git).<br>
-I must manage at least two environments, prod(uction) and dev(elopment), and another important requirement is that no sensitive data (e.g API_URL, CLIENT_KEY) will publicly sit in the app's git repo.<br>
+## The problem we targeting :
+Having a web app developed in Ionic 3 framework and [Deploying to heroku with Git](https://devcenter.heroku.com/articles/git).<br>
+I must manage at least two environments, prod(uction) and dev(elopment), and another important requirement is that no sensitive data (e.g API_URL, CLIENT_KEY) will publicly sit in the app's git repo.
+<br>
+* first, manage two envaierments, prod and dev, with different behaviors - in this case *inject different envaierment variables values in dev mode and prod mode*. <br>
+* second, inject envaierment variables - conataininig *sensitive values* - on the heroku server *without it sitting in the repo*. 
 
-so .. <br>
-* first, manage two envaierments, prod and dev, with different behaviors - in this case **inject different envaierment variables values in dev mode and prod mode**. <br>
-* seconde, inject envaierment variable - conataininig **sensitive values** - on the heroku server **without it sitting in the repo**. <br>
-
-we dealing with multiples framework in this process Angular, Ionic, Webpack and Heroku.
+we dealing with multiple frameworks in this process - Angular-Ionic, Webpack and Heroku.
 <br><br><br>
 
 ## The idea to solve this : 
-We got our config data on a dev.json and a prod.json (one for each env, can be more than two). <br>
+We got our config data on a `dev.json` and a `prod.json` (one for each env, can be more than two). 
+<br>
 and wherever we'll need to use our environment object we'll import it from some environment module, 
-using webpack we will make the the environment object to be imported from dev.json on dev mode, and from prod.json on prod mode.<br>
-On the tsconfig.json file in the "compilerOptions" entry we can set an alias names to dir paths on our project, and webpack make it possible for us to change the path that the alias is named from in the build process. <br> 
-What we'll do is in the the webpack config (that will used for the bundling of the project) we will pick the env mode we are on now (dev/prod) and set the alias to a dir path accordingly (dev --> '...env/dev.json' and prod --> '...env/prod.json'). <br>
-That's solves the behavior differences on each environment, but another thing is to not have the environment data siting publicly on the git repo (and in what we discribed this far, the prod file is do sitting on git).<br> 
-Heroku giving us the option to define [config vars](https://devcenter.heroku.com/articles/config-vars) on your app setting. the values will be saved securely on heroku, and will be added to to process.env for us to use in our app code. <br>
-using process.env will bring us to do another config setup in webpack config. also there is typscript in the way.. 
+using webpack we will make the the environment object to be imported from `dev.json` on dev mode, and from `prod.json` on prod mode.
+<br>
+On the `tsconfig.json` file in the "compilerOptions" entry we can set an alias names for dir paths on our project, and webpack make it possible for us to change the path that the alias is named from in the build process. 
+<br> 
+What we'll do is in the the webpack config (that will used for the bundling of the project) we will pick the env mode we are on now (dev/prod) and set the alias to a dir path accordingly, e.g : dev -> '...env/dev.json', prod -> '...env/prod.json']. 
+<br>
+That's solves the behavior differences on each environment, but another thing is to not have the environment data sitting publicly on the git repo (and in what we discribed so far, the dev file not on git but the prod file is).
+<br> 
+Heroku giving us the option to define [config vars](https://devcenter.heroku.com/articles/config-vars) on our app setting page. the values will be saved securely on heroku, and will be added to `process.env` object, for us to use in our app code. 
+<br>
+Using `process.env` will bring us to define another config plugin in the webpack config file .
 <br><br><br>
 
 ## The solution :
@@ -31,7 +36,7 @@ using process.env will bring us to do another config setup in webpack config. al
         "@ionic/app-scripts": "3.1.9", 
         "typescript": "~2.6.2" 
     } 
-<br>
+<br><br>
 
 **2.** to the "scripts" entry add the following : <br>
 
@@ -43,7 +48,7 @@ using process.env will bring us to do another config setup in webpack config. al
 
 with `--prod` we set the prod flag up during the build on the server, and `webpack` configure the way that webpack will bundle our app. <br>
 more on this setup [here](https://github.com/ionic-team/ionic-app-scripts#command-line-flags) & [here](https://docs.npmjs.com/misc/scripts#description).<br>
-<br>
+<br><br>
 
 **3.** add an entry called `config` to your package.json as in the following : <br>
 
@@ -52,7 +57,7 @@ more on this setup [here](https://github.com/ionic-team/ionic-app-scripts#comman
     }
 
 telling ionic to override the caustom webpack config with our webpack config. <br>
-<br>
+<br><br>
 
 **4.** to the tsconfig.json add the following to the `compilerOptions` entry : <br>
 
@@ -64,15 +69,15 @@ telling ionic to override the caustom webpack config with our webpack config. <b
         }
     }
     
-here we defining an alias named `@environment` to the path "environments/environment.prod" relative to "./src". <br>
-now the line `import * as env from '@environment'` will improd what exported from ./src/environments/environment.prod. <br>
-that is the value that we'll change on each environment.<br>
-<br>
+Here we defining an alias named `@environment` to the path "environments/environment.prod" relative to "./src". <br>
+now the line `import * as env from '@environment'` will import what exported from ./src/environments/environment.prod. <br>
+(that is the value that we'll change on each environment)<br>
+<br><br><br>
 
 #### Handle the webpack configuretion :
-on the root of your app (same level as node_modules) create a folder name `config`, and in it create a file name `webpack.config.js` .
-
-the code on this file will be using [Ionic Environment Variables](https://github.com/ionic-team/ionic-app-scripts#ionic-environment-variables), and mainlly [webpack](https://webpack.js.org) code.
+On the root of your app (same level as node_modules) create a folder name `config`, and in it create a file name `webpack.config.js` .
+<br>
+The code on this file will be using [Ionic Environment Variables](https://github.com/ionic-team/ionic-app-scripts#ionic-environment-variables), and mainlly [webpack](https://webpack.js.org) code.
     
     const path = require('path');
     const webpack = require('webpack');
@@ -103,7 +108,7 @@ the code on this file will be using [Ionic Environment Variables](https://github
           'process.env': JSON.stringify(process.env)
         })
       );
-      // set the pat of the alias @environment to the cur env. 
+      // set the path of the alias @environment to the cur env. 
       config[ionicEnv].resolve.alias = {
           "@environment": pathToEnvModule
       };
@@ -111,9 +116,42 @@ the code on this file will be using [Ionic Environment Variables](https://github
       
       return config;
     }
+<br><br><br>
 
+#### Handle the environment service implementation :
+Encapsulating the environment variable in a service is the best practice in this case. <br>
+Where you need to use the env object inject the service like any other service ..
 
-<br><br>
+    import * as _env from '@environment';  //  <-- generically import the env object according to the current environment
+    import { Injectable } from "@angular/core";
+    
+    @Injectable()
+    export class EnvironmentService {
+    
+        private env: {[key: string]: string | undefined};
+        
+        constructor() {
+            console.log(`${_env}`);
+            this.env = Object.freeze(_env); // <-- making env object to be immutable
+        }
+    
+        get(keyName : string): string | undefined {
+            console.log(`get(${keyName})`);
+            if(this.env.hasOwnProperty(keyName)) {
+                return this.env[keyName]
+            } else {
+                console.log(`env has no property name ${keyName}.`);
+            }
+        }
+    
+        getEnv(): {[key: string]: string | undefined} {
+            console.log(`getEnv()`);
+            return this.env;
+        }
+    }
+
+<br><br><br><br>
+
 # res: 
 * https://devcenter.heroku.com/articles/nodejs-support
 * https://github.com/ionic-team/ionic-app-scripts
@@ -127,8 +165,9 @@ the code on this file will be using [Ionic Environment Variables](https://github
 * https://www.williamghelfi.com/blog/2017/06/22/ionic-environments-webpack/
 * https://blog.grossman.io/writing-es6-ionic-code-with-webpack/
 * http://blog.lssinc.com/2017/04/24/ionic-environment-variables-the-best-way/
-** http://geeklearning.io/our-project-template-to-build-awesome-ionic-apps-using-webpack-and-typescript/
+* http://geeklearning.io/our-project-template-to-build-awesome-ionic-apps-using-webpack-and-typescript/
 * https://angular.io/guide/dependency-injection-pattern
-** https://codecraft.tv/courses/angular/dependency-injection-and-providers/tokens/
+* https://codecraft.tv/courses/angular/dependency-injection-and-providers/tokens/
 * https://github.com/roblouie/ionic2-environment-variables/blob/master/webpack.config.js
 * https://artyomsokolov.com/how-to-use-different-environment-variables-for-production-and-development-with-ionic-3/
+* http://marcoucou.com/webpack-and-ionic/
