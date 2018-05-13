@@ -103,7 +103,7 @@ the code on this file will be using [Ionic Environment Variables](https://github
           'process.env': JSON.stringify(process.env)
         })
       );
-      // set the pat of the alias @environment to the cur env. 
+      // set the path of the alias @environment to the cur env. 
       config[ionicEnv].resolve.alias = {
           "@environment": pathToEnvModule
       };
