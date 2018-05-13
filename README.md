@@ -1,5 +1,5 @@
 ## The problam we targeting :
-Having a web app developed in Ionic framework and [Deploying to heroku with Git](https://devcenter.heroku.com/articles/git).<br>
+Having a web app developed in Ionic 3 framework and [Deploying to heroku with Git](https://devcenter.heroku.com/articles/git).<br>
 I must manage at least two environments, prod(uction) and dev(elopment), and another important requirement is that no sensitive data (e.g API_URL, CLIENT_KEY) will publicly sit in the app's git repo.<br>
 
 so .. <br>
