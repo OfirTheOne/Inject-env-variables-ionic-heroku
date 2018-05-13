@@ -20,6 +20,7 @@ const resolvePathToEnvModule = (ionicEnv) => {
 const pathToEnvModule = resolvePathToEnvModule(process.env.IONIC_ENV);
 
 module.exports = function () {
+  console.log(`NODE_ENV : ${process.env.NODE_ENV}`)
   console.log(`process.env.IONIC_ENV : ${process.env.IONIC_ENV}`);
   console.log(`pathToEnvModule : ${pathToEnvModule}`);
   // set process.env as a global variable.
