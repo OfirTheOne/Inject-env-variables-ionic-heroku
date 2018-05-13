@@ -17,9 +17,9 @@ const resolvePathToEnvModule = (ionicEnv) => {
   return curEnvPath;
 }
 
-const pathToEnvModule = resolvePathToEnvModule(process.env.IONIC_ENV);
 
 module.exports = function () {
+  var pathToEnvModule = resolvePathToEnvModule(process.env.IONIC_ENV);
   console.log(`NODE_ENV : ${process.env.NODE_ENV}`)
   console.log(`process.env.IONIC_ENV : ${process.env.IONIC_ENV}`);
   console.log(`pathToEnvModule : ${pathToEnvModule}`);
