@@ -1,21 +1,27 @@
 ## The problem we targeting :
 Having a web app developed in Ionic 3 framework and [Deploying to heroku with Git](https://devcenter.heroku.com/articles/git).<br>
-I must manage at least two environments, prod(uction) and dev(elopment), and another important requirement is that no sensitive data (e.g API_URL, CLIENT_KEY) will publicly sit in the app's git repo.<br>
+I must manage at least two environments, prod(uction) and dev(elopment), and another important requirement is that no sensitive data (e.g API_URL, CLIENT_KEY) will publicly sit in the app's git repo.
 <br>
 * first, manage two envaierments, prod and dev, with different behaviors - in this case *inject different envaierment variables values in dev mode and prod mode*. <br>
-* seconde, inject envaierment variable - conataininig *sensitive values* - on the heroku server *without it sitting in the repo*. <br>
-
+* seconde, inject envaierment variable - conataininig *sensitive values* - on the heroku server *without it sitting in the repo*. 
+<br>
 we dealing with multiple frameworks in this process - Angular-Ionic, Webpack and Heroku.
 <br><br><br>
 
 ## The idea to solve this : 
-We got our config data on a `dev.json` and a `prod.json` (one for each env, can be more than two). <br>
+We got our config data on a `dev.json` and a `prod.json` (one for each env, can be more than two). 
+<br>
 and wherever we'll need to use our environment object we'll import it from some environment module, 
-using webpack we will make the the environment object to be imported from `dev.json` on dev mode, and from `prod.json` on prod mode.<br>
-On the `tsconfig.json` file in the "compilerOptions" entry we can set an alias names for dir paths on our project, and webpack make it possible for us to change the path that the alias is named from in the build process. <br> 
-What we'll do is in the the webpack config (that will used for the bundling of the project) we will pick the env mode we are on now (dev/prod) and set the alias to a dir path accordingly [dev : '...env/dev.json' / prod : '...env/prod.json']. <br>
-That's solves the behavior differences on each environment, but another thing is to not have the environment data sitting publicly on the git repo (and in what we discribed so far, the dev file not on git but the prod file is).<br> 
-Heroku giving us the option to define [config vars](https://devcenter.heroku.com/articles/config-vars) on our app setting page. the values will be saved securely on heroku, and will be added to `process.env` object, for us to use in our app code. <br>
+using webpack we will make the the environment object to be imported from `dev.json` on dev mode, and from `prod.json` on prod mode.
+<br>
+On the `tsconfig.json` file in the "compilerOptions" entry we can set an alias names for dir paths on our project, and webpack make it possible for us to change the path that the alias is named from in the build process. 
+<br> 
+What we'll do is in the the webpack config (that will used for the bundling of the project) we will pick the env mode we are on now (dev/prod) and set the alias to a dir path accordingly, e.g : dev -> '...env/dev.json', prod -> '...env/prod.json']. 
+<br>
+That's solves the behavior differences on each environment, but another thing is to not have the environment data sitting publicly on the git repo (and in what we discribed so far, the dev file not on git but the prod file is).
+<br> 
+Heroku giving us the option to define [config vars](https://devcenter.heroku.com/articles/config-vars) on our app setting page. the values will be saved securely on heroku, and will be added to `process.env` object, for us to use in our app code. 
+<br>
 using `process.env` will bring us to define another config plugin in the webpack config file .
 <br><br><br>
 
