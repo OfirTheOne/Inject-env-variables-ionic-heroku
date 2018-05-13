@@ -7,13 +7,9 @@ import { EnvironmentService } from '../../services/environment.service';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, private environment: EnvironmentService) {
-
-  }
+  constructor(public navCtrl: NavController, private environment: EnvironmentService) {}
 
   ionViewDidLoad() {
-    console.log(this.environment.get("all"));
-    // console.log(this.envVariables.API_URL);
-
+    console.log(this.environment.getEnv());
   }
 }
