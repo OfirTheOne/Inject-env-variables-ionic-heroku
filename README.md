@@ -127,14 +127,17 @@ Where you need to use the env object inject the service like any other service .
     
     @Injectable()
     export class EnvironmentService {
-    
-        private env: {[key: string]: string | undefined};
+
+        private readonly PRODUCTION_MODE_NAMESPACE = 'prod';
+        private readonly DEVELOPMENT_MODE_NAMESPACE = 'dev';
         
+        private env: {[key: string]: string | undefined};
+    
         constructor() {
             console.log(`${_env}`);
-            this.env = Object.freeze(_env); // <-- making env object to be immutable
+            this.env = Object.freeze(_env); // making env object to be immutable    
         }
-    
+
         get(keyName : string): string | undefined {
             console.log(`get(${keyName})`);
             if(this.env.hasOwnProperty(keyName)) {
@@ -147,6 +150,14 @@ Where you need to use the env object inject the service like any other service .
         getEnv(): {[key: string]: string | undefined} {
             console.log(`getEnv()`);
             return this.env;
+        }
+    
+        isProd(): boolean {
+            return this.env['CUR_ENV'] == this.PRODUCTION_MODE_NAMESPACE; 
+        }
+    
+        isDev(): boolean {
+            return this.env['CUR_ENV'] == this.DEVELOPMENT_MODE_NAMESPACE; 
         }
     }
 
